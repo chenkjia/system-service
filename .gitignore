@@ -3,3 +3,4 @@ node_modules
 lib/config.js
 log
 stack.yml
+yarn/lock
