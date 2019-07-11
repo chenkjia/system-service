@@ -2,7 +2,8 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const log = require('./log');
+const fileUpload = require('express-fileupload')
+const log = require('./lib/log');
 const logs = log.logs;
 
 
@@ -20,8 +21,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload({
+  limits: { fileSize: 50 * 1024 * 1024},
+  useTempFiles: true,
+  tempFileDir: '/tmp/'
+}));
 
-app.use('/', indexRouter);
+app.use('/api/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
