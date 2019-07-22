@@ -7,7 +7,9 @@ const express = require('express'),
 
 
 router.post('/', (req, res) => {
-  res.json();
+  console.log(req);
+  console.log(req.files.file);
+  res.send(req.files.file);
 });
 
 module.exports = router;

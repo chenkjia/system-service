@@ -22,8 +22,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(fileUpload({
-  limits: { fileSize: 50 * 1024 * 1024},
+  limits: { fileSize: 2 * 1024 * 1024},
   useTempFiles: true,
+  safeFileNames: true,
   tempFileDir: '/tmp/'
 }));
 
