@@ -2,7 +2,6 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const fileUpload = require('express-fileupload')
 const log = require('./lib/log');
 const logs = log.logs;
 
@@ -20,14 +19,14 @@ app.set('view engine', 'pug');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(fileUpload({
-  limits: { fileSize: 2 * 1024 * 1024},
-  useTempFiles: true,
-  safeFileNames: true,
-  tempFileDir: '/tmp/'
-}));
 
+// 静态文件服务
+app.use(express.static(path.join(__dirname, 'public')));
+
+// 上传文件服务
+app.use('/files',express.static(path.join(__dirname, 'files')));
+
+// 接口服务
 app.use('/api/', indexRouter);
 
 // catch 404 and forward to error handler

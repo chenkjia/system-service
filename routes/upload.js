@@ -1,14 +1,12 @@
-const express = require('express'),
-  router = express.Router()
-  // formidable = require('formidable'),
+const express = require('express')
+const router = express.Router()
+const SetModal = require('../lib/upload.js')
   // fs = require('fs'),
   // TITLE = 'formidable上传示例',
   // AVATAR_UPLOAD_FOLDER = '/avatar/'
 
 
 router.post('/', (req, res) => {
-  console.log(req);
-  console.log(req.files.file);
   res.send(req.files.file);
 });
 
