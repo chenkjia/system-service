@@ -5,7 +5,7 @@ const PartcategoryModal = require('../models/partcategory.js');
 
 router.get('/', api.read(PartcategoryModal))
 router.post('/', api.create(PartcategoryModal))
-router.put('/:id', api.update(PartcategoryModal))
-router.delete('/:id', api.delete(PartcategoryModal))
+router.put('/', api.update(PartcategoryModal))
+router.delete('/', api.delete(PartcategoryModal))
 
 module.exports = router;

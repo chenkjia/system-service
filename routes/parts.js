@@ -5,7 +5,7 @@ const PartModal = require('../models/part.js');
 
 router.get('/', api.read(PartModal))
 router.post('/', api.create(PartModal))
-router.put('/:id', api.update(PartModal))
-router.delete('/:id', api.delete(PartModal))
+router.put('/', api.update(PartModal))
+router.delete('/', api.delete(PartModal))
 
 module.exports = router;

@@ -5,7 +5,7 @@ const SetModal = require('../models/set.js');
 
 router.get('/', api.read(SetModal))
 router.post('/', api.create(SetModal))
-router.put('/:id', api.update(SetModal))
-router.delete('/:id', api.delete(SetModal))
+router.put('/', api.update(SetModal))
+router.delete('/', api.delete(SetModal))
 
 module.exports = router;
