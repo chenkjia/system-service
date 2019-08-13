@@ -3,5 +3,4 @@ node_modules
 lib/config.js
 files
 log
-stack.yml
 yarn/lock
