@@ -6,8 +6,8 @@ const SetcategorySchema = new mongoose.Schema({
   ...CommonSchema,
   name: { type: String }, // 英文名称
   label: { type: String },  // 中文名称
-  logo: { type: String },
-  picture: { type: String }
+  logo: [{ name: String, url: String }],
+  picture: [{ name: String, url: String }]
 });
 //创建套装类别Model
 const SetcategoryModal = db.model("setcategory", SetcategorySchema);
