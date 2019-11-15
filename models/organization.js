@@ -1,15 +1,14 @@
 const mongoose = require("mongoose");
 const db = require('../lib/mongo.js');
 const CommonSchema = require('./common.js');
-//一个菜单模型
+//一个组织模型
 const Schema = new mongoose.Schema(Object.assign(CommonSchema, {
-  label: { type: String },  // 菜单名称
-  type: { type: String },  // 菜单类型
-  url: { type: String },  // 菜单路径
-  icon: { type: String },  // 菜单图标
+  label: { type: String },  // 组织名称
+  type: { type: String },  // 组织类型
   enabled: { type: Boolean },  // 是否启用
   remark: { type: String },  // 备注
+  parentId: { type: String, default: '' },  // 父级ID
 }));
-//创建菜单Model
-const Modal = db.model("menu", Schema);
+//创建组织Model
+const Modal = db.model("organization", Schema);
 module.exports = Modal
