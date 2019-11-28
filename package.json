@@ -8,6 +8,7 @@
     "dev": "DEBUG=legoserver:* & npm run devstart"
   },
   "dependencies": {
+    "bcrypt": "^3.0.7",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
