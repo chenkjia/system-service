@@ -12,22 +12,22 @@ router.get('/', api.read(Modal, {
 router.post('/', api.create(Modal))
 router.put('/', api.update(Modal))
 router.delete('/', api.delete(Modal))
-router.put('/changePassword', (model, condition) => (req, res) => {
-  model.updateOne(condition || {
+router.put('/changePassword', (req, res) => {
+  Modal.updateOne({
     _id: req.query._id
   }, {
-    password: password,
+    password: req.body.password,
     updated: Date.now()
   }, {
     new: true,
     runValidators: true
   })
-    .then(doc => {
-      res.send(resSuccess(doc))
-    })
-    .catch(err => {
-      res.send(err)
-    })
+  .then(doc => {
+    res.send(api.resSuccess(doc))
+  })
+  .catch(err => {
+    res.send(err)
+  })
 })
 
 module.exports = router;
