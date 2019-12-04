@@ -23,9 +23,11 @@ router.put('/changePassword', (req, res) => {
     runValidators: true
   })
   .then(doc => {
+    console.log(doc)
     res.send(api.resSuccess(doc))
   })
   .catch(err => {
+    console.log(err)
     res.send(err)
   })
 })
