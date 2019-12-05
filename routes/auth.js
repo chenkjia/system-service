@@ -3,14 +3,26 @@ const router = express.Router();
 const api = require('../lib/api.js');
 const session = require('../lib/session.js');
 const Modal = require('../models/account.js');
+const SessionModal = require('../models/session.js');
 
 
-router.get('/userInfo', api.read(Modal, {
-  // 过滤超管账号
-  condition: { username: /^((?!sa).)+$/ },
-  // 屏蔽密码
-  list: '-password'
-}))
+router.get('/userInfo', (req, res) => {
+  SessionModal.findOne({
+    _id: req.headers['x-token']
+  })
+  .populate('account', '-password')
+  .then(doc => {
+    console.log(doc)
+    res.send(api.resSuccess(doc))
+    // if(!doc) {
+    //   res.send({code: -1, message: '账号不存在'})
+    //   return
+    // }
+  })
+  .catch(err => {
+    res.send(err)
+  })
+})
 
 router.post('/login', (req, res) => {
   Modal.findOne({
@@ -31,7 +43,7 @@ router.post('/login', (req, res) => {
           code: 0,
           message: '登录成功',
           data: {
-            sessionId: session._id
+            token: session._id
           }
         })
       })
