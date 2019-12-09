@@ -14,7 +14,8 @@ const Schema = new mongoose.Schema({
   label: { type: String },  // 字典资源名称
   options: [{
     value: { type: String}, // 选项值
-    label: { type: String} // 选项文字
+    label: { type: String}, // 选项文字
+    enabled: { type: Boolean } // 启用状态
   }],
   enabled: { type: Boolean }, // 启用状态
   remark: { type: String },  // 备注

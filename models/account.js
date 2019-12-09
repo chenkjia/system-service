@@ -13,7 +13,10 @@ const Schema = new mongoose.Schema({
   fullname: { type: String }, // 姓名
   photo: { type: Array }, // 照片
   organizationId: { type: String },  // 所属部门
-  roleId: { type: String },  // 角色
+  roles: [{ 
+    type: mongoose.Schema.Types.ObjectId,
+    ref : 'role'
+  }],  // 角色
   mobile: { type: String },  // 联系电话
   enabled: { type: Boolean },  // 是否启用
   remark: { type: String },  // 备注

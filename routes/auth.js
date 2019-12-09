@@ -12,12 +12,7 @@ router.get('/userInfo', (req, res) => {
   })
   .populate('account', '-password')
   .then(doc => {
-    console.log(doc)
     res.send(api.resSuccess(doc))
-    // if(!doc) {
-    //   res.send({code: -1, message: '账号不存在'})
-    //   return
-    // }
   })
   .catch(err => {
     res.send(err)
