@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+
+const api = require('../../lib/api.js');
 const DictionaryModal = require('../../models/dictionary.js');
 const defaultRelation = require('./defaultRelation')
 const resourceRelation = require('./resourceRelation')
@@ -37,7 +39,13 @@ router.get('/', (req, res) => {
   }, [])
   Promise.all(getRelationList)
   .then(doc => {
-    res.send(doc)
+    const data = doc.reduce((result, { key, value }) => {
+      return {
+        ...result,
+        [key]: value
+      }
+    }, {})
+    res.send(api.resSuccess(data))
   })
   .catch(err => res.send(err))
 })
