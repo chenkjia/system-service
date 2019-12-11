@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require("mongoose");
 const router = express.Router();
 const api = require('../lib/api.js');
 const session = require('../lib/session.js');
@@ -7,21 +8,61 @@ const SessionModal = require('../models/session.js');
 
 
 router.get('/userInfo', (req, res) => {
-  SessionModal.findOne({
-    _id: req.headers['x-token']
-  })
-  .populate('account', '-password')
-  .then(doc => {
-    res.send(api.resSuccess(doc))
-  })
-  .catch(err => {
-    res.send(err)
-  })
+  // SessionModal.findOne({
+  //   _id: req.headers['x-token']
+  // })
+  // .populate('account', '-password')
+  // .populate('role', 'menus')
+  // .populate('menu')
+  // .then(doc => {
+  //   res.send(api.resSuccess(doc))
+  // })
+  // .catch(err => {
+  //   res.send(err)
+  // })
+
+  SessionModal.
+  aggregate([
+    {
+      '$match': {
+        '_id': mongoose.Types.ObjectId(req.headers['x-token'])
+      }
+    }, {
+      '$lookup': {
+        'from': 'accounts', 
+        'localField': 'account', 
+        'foreignField': '_id', 
+        'as': 'account'
+      }
+    }, {
+      '$unwind': {
+        'path': '$account'
+      }
+    }, {
+      '$lookup': {
+        'from': 'roles', 
+        'localField': 'account.roles', 
+        'foreignField': '_id', 
+        'as': 'roles'
+      }
+    }, {
+      '$lookup': {
+        'from': 'menus', 
+        'localField': 'roles.menus', 
+        'foreignField': '_id', 
+        'as': 'menus'
+      }
+    }
+  ]).
+  exec((err, doc) => {
+    res.send(api.resSuccess(doc[0]))
+  });
 })
 
 router.post('/login', (req, res) => {
   Modal.findOne({
-    username: req.body.username
+    username: req.body.username,
+    enabled: true
   })
   .then(doc => {
     if(!doc) {
