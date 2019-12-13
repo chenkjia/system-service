@@ -13,8 +13,7 @@ const app = express();
 log.use(app)
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+app.use('/', express.static('views'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
