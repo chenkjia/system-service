@@ -2,7 +2,9 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 const log = require('./lib/log');
+
 const logs = log.logs;
 
 
@@ -21,6 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // 静态文件服务
+app.use(compression())
 app.use(express.static(path.join(__dirname, 'public')));
 
 // 上传文件服务
