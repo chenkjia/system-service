@@ -19,6 +19,7 @@ app.set('port', port);
  * Create HTTP server.
  */
 
+https.globalAgent.maxSockets = 30000;
 var server = http.createServer(app);
 
 /**
