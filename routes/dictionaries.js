@@ -1,12 +1,29 @@
 const express = require('express');
 const router = express.Router();
 const api = require('../lib/api.js');
+const resourceRelation = require('./relation/resourceRelation.js');
+const defaultRelation = require('./relation/defaultRelation.js');
 const Modal = require('../models/dictionary.js');
 
 const resSuccess = api.resSuccess
 
 router.get('/', api.read(Modal))
-router.post('/', api.create(Modal))
+router.post('/', (req, res) => {
+  if (resourceRelation[req.body.sign] || defaultRelation[req.body.sign]) {
+    res.send({
+      code: -1,
+      message: '此字典标识为保留标识'
+    })
+  } else {
+    Modal.create(req.body)
+      .then(doc => {
+        res.send(resSuccess(doc))
+      })
+      .catch(err => {
+        res.send(err)
+      })
+  }
+})
 router.put('/', api.update(Modal))
 router.delete('/', api.delete(Modal))
 
