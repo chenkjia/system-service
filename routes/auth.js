@@ -7,6 +7,32 @@ const Modal = require('../models/account.js');
 const SessionModal = require('../models/session.js');
 
 
+router.put('/shortcuts', (req, res) => {
+  SessionModal.findOne({
+    _id: req.headers['x-token']
+  })
+  .then(doc => {
+    Modal.updateOne({
+      _id: doc.account
+    }, {
+      shortcuts: req.body.shortcuts,
+      updated: Date.now()
+    }, {
+      new: true,
+      runValidators: true
+    })
+    .then(doc => {
+      res.send(api.resSuccess(doc))
+    })
+    .catch(err => {
+      res.send(err)
+    })
+  })
+  .catch(err => {
+    res.send(err)
+  })
+})
+
 router.get('/userInfo', (req, res) => {
   // SessionModal.findOne({
   //   _id: req.headers['x-token']

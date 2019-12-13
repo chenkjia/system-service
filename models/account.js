@@ -13,6 +13,10 @@ const Schema = new mongoose.Schema({
   fullname: { type: String }, // 姓名
   photo: { type: Array }, // 照片
   organizationId: { type: String },  // 所属部门
+  shortcuts: [{ 
+    type: mongoose.Schema.Types.ObjectId,
+    ref : 'menu'
+  }],  // 角色
   roles: [{ 
     type: mongoose.Schema.Types.ObjectId,
     ref : 'role'
