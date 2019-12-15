@@ -34,19 +34,6 @@ router.put('/shortcuts', (req, res) => {
 })
 
 router.get('/userInfo', (req, res) => {
-  // SessionModal.findOne({
-  //   _id: req.headers['x-token']
-  // })
-  // .populate('account', '-password')
-  // .populate('role', 'menus')
-  // .populate('menu')
-  // .then(doc => {
-  //   res.send(api.resSuccess(doc))
-  // })
-  // .catch(err => {
-  //   res.send(err)
-  // })
-
   SessionModal.
   aggregate([
     {
