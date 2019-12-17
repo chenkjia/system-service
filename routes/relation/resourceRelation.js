@@ -1,5 +1,5 @@
-const MenuModal = require('../../models/menu.js');
-const RoleModal = require('../../models/role.js');
+const MenuModal = require('../../models/system/menu.js');
+const RoleModal = require('../../models/system/role.js');
 
 const resourceRelation = {
   menus: () => {

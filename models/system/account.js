@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
-const db = require('../lib/mongo.js');
-const CommonSchema = require('./common.js');
+const db = require('../../lib/mongo.js');
+const CommonSchema = require('../common.js');
 
-const md5 = require('../lib/encryption.js');
+const md5 = require('../../lib/encryption.js');
 
 //一个账号模型
 const Schema = new mongoose.Schema({

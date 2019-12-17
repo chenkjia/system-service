@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const api = require('../lib/api.js');
-const resourceRelation = require('./relation/resourceRelation.js');
-const defaultRelation = require('./relation/defaultRelation.js');
-const Modal = require('../models/dictionary.js');
+const api = require('../../lib/api.js');
+const resourceRelation = require('../relation/resourceRelation.js');
+const defaultRelation = require('../relation/defaultRelation.js');
+const Modal = require('../../models/system/dictionary.js');
 
 const resSuccess = api.resSuccess
 

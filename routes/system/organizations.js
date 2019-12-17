@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const api = require('../lib/api.js');
-const Modal = require('../models/organization.js');
+const api = require('../../lib/api.js');
+const Modal = require('../../models/system/organization.js');
 
 router.get('/', api.read(Modal))
 router.post('/', api.create(Modal))

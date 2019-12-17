@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const router = express.Router();
 const api = require('../lib/api.js');
 const session = require('../lib/session.js');
-const Modal = require('../models/account.js');
+const Modal = require('../models/system/account.js');
 const SessionModal = require('../models/session.js');
 
 

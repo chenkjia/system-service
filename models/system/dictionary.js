@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const db = require('../lib/mongo.js');
-const CommonSchema = require('./common.js');
+const db = require('../../lib/mongo.js');
+const CommonSchema = require('../common.js');
 
 //一个字典选项模型
 // const OptionSchema = new mongoose.Schema({

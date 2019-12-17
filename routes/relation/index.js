@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const api = require('../../lib/api.js');
-const DictionaryModal = require('../../models/dictionary.js');
+const DictionaryModal = require('../../models/system/dictionary.js');
 const defaultRelation = require('./defaultRelation')
 const resourceRelation = require('./resourceRelation')
 

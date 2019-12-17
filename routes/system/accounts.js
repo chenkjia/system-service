@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const api = require('../lib/api.js');
-const Modal = require('../models/account.js');
+const api = require('../../lib/api.js');
+const Modal = require('../../models/system/account.js');
 
 router.get('/', api.read(Modal, {
   // 过滤超管账号
