@@ -7,6 +7,7 @@ const relation = require('./relation');
 
 // 各功能模块接口
 const system = require('./system/index.js');
+const demo = require('./demo/index.js');
 
 // 公共接口
 router.use('/', auth);
@@ -15,5 +16,6 @@ router.use('/relation', relation);
 
 // 各功能模块接口
 router.use('/system', system);
+router.use('/demo', demo);
 
 module.exports = router;
