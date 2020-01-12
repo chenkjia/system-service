@@ -4,3 +4,4 @@ lib/config.js
 files
 log
 yarn.lock
+docker-compose.yml
